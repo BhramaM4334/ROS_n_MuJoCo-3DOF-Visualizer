@@ -1,3 +1,5 @@
+# !! For the source codes, please go to the "codes" section !! <br>&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;!! (GLFW and MuJoCo library required) !!
+<br><br>
 # Some explanation for the code
 I'm using an entirely new arm file for this because the last one broke a bit. Also integrated ROS with MuJoCo
 
@@ -15,7 +17,6 @@ Simply, because I want to loop it out, since I can just loop publisher so that s
 
 ## Preview video:
 https://github.com/user-attachments/assets/18d43223-06ec-49b7-8066-fb79448303ba
-
 
 
 
