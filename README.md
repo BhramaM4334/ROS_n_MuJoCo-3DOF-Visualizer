@@ -1,4 +1,4 @@
-# !! For the source codes, please go to the "codes" section !! <br>&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;!! (GLFW and MuJoCo library required) !!
+# !! For the source codes, please go to the "codes" branch !! <br>&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;!! (GLFW and MuJoCo library required) !!
 <br><br>
 # Some explanation for the code
 I'm using an entirely new arm file for this because the last one broke a bit. Also integrated ROS with MuJoCo
