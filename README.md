@@ -1,5 +1,10 @@
-# !! For the source codes, please go to the "codes" branch !! <br>&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;!! (GLFW and MuJoCo library required) !!
-<br><br>
+<h1 align="center">
+  For the codes is located at "codes" branch.
+  <br>
+  (GLFW and MuJoCo libraries are required)
+</h1>
+
+
 # Some explanation for the code
 I'm using an entirely new arm file for this because the last one broke a bit. Also integrated ROS with MuJoCo
 
