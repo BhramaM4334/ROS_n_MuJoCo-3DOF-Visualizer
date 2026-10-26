@@ -1,0 +1,7 @@
+<launch>
+    <!-- Publisher Node -->
+    <node pkg="arm_mujoco_visual" type="publisher_node" name="publisher_node" output="screen" />
+
+    <!-- Viewer Node -->
+    <node pkg="arm_mujoco_visual" type="mujoco_viewer_node" name="mujoco_viewer_node" output="screen" />
+</launch>

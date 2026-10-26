@@ -1,0 +1,70 @@
+<mujoco model="simple_arm">
+    <compiler angle="radian" meshdir="assets/" autolimits="true"/>
+    
+    <option gravity="0 0 -9.81" timestep="0.002"/>
+
+    <default>
+        <joint damping="0.5" armature="0.01"/>
+        <geom friction="0.6 0.005 0.0001" condim="3"/>
+    </default>
+
+    <asset>
+        <material name="grey" rgba="0.5 0.5 0.5 1.0"/>
+        <material name="blue" rgba="0.0 0.0 0.8 1.0"/>
+        <material name="green" rgba="0.0 0.8 0.0 1.0"/>
+        <material name="magnet" rgba="1 1 1 1.0"/>  
+    </asset>
+
+    <worldbody>
+        <!-- Light source for visualization -->
+        <light pos="0 0 1.5" dir="0 0 -1" diffuse="0.8 0.8 0.8"/>
+        
+        <!-- Ground plane -->
+        <geom name="floor" type="plane" size="2 2 0.1" rgba="0.9 0.9 0.9 1"/>
+
+        <!-- Base Link -->
+        <body name="base_link" pos="0 0 0.05">
+            <geom type="box" size="0.25 0.25 0.05" material="grey" contype="0" conaffinity="0"/>
+
+            <!-- Yawing Base (Base Rotation / Joint 1) -->
+            <body name="yawing_base" pos="0 0 0.05">
+                <joint name="shoulder_rotate" type="hinge" axis="0 0 1"/>
+                <geom type="cylinder" size="0.2 0.025" material="grey" contype="0" conaffinity="0"/>
+
+                <!-- Cylinder Pitch Mount & Shoulder Pitch Joint (Joint 2) -->
+                <body name="cylinder_pitch" pos="0 0 0.025">
+                    <geom type="cylinder" size="0.05 0.05" euler="1.57 0 0" material="grey" />
+                    
+                    <body name="shoulder_link" pos="0 0 0">
+                        <joint name="base_pitch" type="hinge" axis="0 1 0" range="-0.86 0.86"/>
+                        <geom type="box" size="0.04 0.04 0.25" pos="0 0 0.25" material="blue"/>
+                        
+                        <!-- Elbow Joint (Joint 3) -->
+                        <body name="SEcylinder_joint" pos="0 0 0.5" euler="1.57 0 0">
+                            <joint name="elbow_joint" type="hinge" axis="0 0 1" range="-1.43 1.43"/>
+                            <geom type="cylinder" size="0.05 0.05" material="green"/>
+
+                            <!-- Elbow Link (with fixed rotation alignment offset) -->
+                            <body name="elbow_link" pos="0 0 0" euler="0 1.57 0">
+                                <geom type="box" size="0.035 0.035 0.2" pos="0 0 0.2" material="green"/>
+
+                                <!-- Magnet Tool Link -->
+                                <body name="magnet_cylinder" pos="0 0 0.39">
+                                    <joint name="magnet_joint" type="hinge" axis="0 0 1"/>
+                                    <geom type="cylinder" size="0.05 0.02" material="magnet"/>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <actuator>
+        <position name="act_shoulder_rotate" joint="shoulder_rotate" kp="100" kv="10"/>
+        <position name="act_base_pitch" joint="base_pitch" kp="100" kv="10"/>
+        <position name="act_elbow_joint" joint="elbow_joint" kp="100" kv="10"/>
+        <position name="act_magnet_joint" joint="magnet_joint" kp="50" kv="5"/>
+    </actuator>
+</mujoco>
