@@ -1,0 +1,2 @@
+arm_mujoco_visual
+-DCATKIN_DEVEL_PREFIX=/home/bhrama/--ABINARA-1/robot-operating-system-ROS/3DOF_Robot/devel -DCMAKE_INSTALL_PREFIX=/home/bhrama/--ABINARA-1/robot-operating-system-ROS/3DOF_Robot/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/bhrama/--ABINARA-1/robot-operating-system-ROS/3DOF_Robot/devel
+
+Name: arm_mujoco_visual
+Description: Description of arm_mujoco_visual
+Version: 0.0.0
+Cflags: -I/home/bhrama/--ABINARA-1/robot-operating-system-ROS/3DOF_Robot/devel/include -I/home/bhrama/--ABINARA-1/robot-operating-system-ROS/3DOF_Robot/src/arm_mujoco_visual/include
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs message_runtime
