@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+
+<robot name="simple_arm">
+
+
+
+  <!-- Base Link -->
+
+  <link name="base_link">
+
+    <visual>
+
+      <geometry>
+
+        <box size="0.5 0.5 0.1"/>
+
+      </geometry>
+
+      <material name="grey">
+
+        <color rgba="0.5 0.5 0.5 1.0"/>
+
+      </material>
+
+    </visual>
+
+    <collision>
+
+      <geometry>
+
+        <box size="0.5 0.5 0.1"/>
+
+      </geometry>
+
+    </collision>
+
+  </link>
+
+
+
+  <joint name="base_joint" type="fixed">
+
+    <parent link="base_link"/>
+
+    <child link="yawing_base"/>
+
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+
+  </joint>
+
+  
+
+  <link name="yawing_base">
+
+    <visual>
+
+      <geometry>
+
+        <cylinder length="0.05" radius="0.2"/>
+
+      </geometry>
+
+      <material name="grey"/>
+
+    </visual>
+
+    <collision>
+
+      <geometry>
+
+        <cylinder length="0.05" radius="0.1"/>
+
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  
+
+  <!-- Shoulder Joint -->
+
+  <joint name="shoulder_rotate" type="continuous">
+
+    <parent link="yawing_base"/>
+
+    <child link="cylinder_pitch"/>
+
+    <origin xyz="0 0 0.025" rpy="0 0 0"/>
+
+    <axis xyz="0 0 1"/>
+
+  </joint>
+
+  
+
+  <!-- cylinder -->
+
+  <link name="cylinder_pitch">
+
+    <visual>
+
+      <geometry>
+
+        <cylinder length="0.1" radius="0.05"/>
+
+      </geometry>
+
+      <origin xyz="0 0 0" rpy="1.57 0 0"/>
+
+    </visual>
+
+  </link>
+
+  
+
+  <joint name="base_pitch" type="revolute">
+
+    <parent link="cylinder_pitch"/>
+
+    <child link="shoulder_link"/>
+
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+
+    <axis xyz="0 1 0"/>
+
+    <limit lower="-0.86" upper="0.86"/> 
+
+  </joint>
+
+
+
+  <!-- Shoulder Link -->
+
+  <link name="shoulder_link">
+
+    <visual>
+
+      <geometry>
+
+        <box size="0.08 0.08 0.5"/>
+
+      </geometry>
+
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+
+      <material name="blue">
+
+        <color rgba="0.0 0.0 0.8 1.0"/>
+
+      </material>
+
+    </visual>
+
+    <collision>
+
+      <geometry>
+
+        <box size="0.8 0.8 0.5"/>
+
+      </geometry>
+
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+
+    </collision>
+
+  </link>
+
+
+
+  <!-- Elbow Joint -->
+
+  <joint name="elbow_joint" type="revolute">
+
+    <parent link="shoulder_link"/>
+
+    <child link="SEcylinder_joint"/>
+
+    <origin xyz="0 0 0.5" rpy="-1.57 -1.57 0"/>
+
+    <axis xyz="0 0 1"/>
+
+    <limit lower="-1.43" upper="1.43" />
+
+  </joint>
+
+  
+
+<link name="SEcylinder_joint">
+
+    <visual>
+
+      <geometry>
+
+        <cylinder length ="0.1" radius = "0.05"/>
+
+      </geometry>
+
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+
+      <material name="green">
+
+        <color rgba="255 255 255.0 1"/>
+
+      </material>
+
+    </visual>
+
+    <collision>
+
+      <geometry>
+
+        <box size="0.08 0.08 0.4"/>
+
+      </geometry>
+
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+
+    </collision>
+
+  </link>
+
+<!-- switch back to the original pitch-->
+
+  <joint name="fixed_clydiner" type="fixed">
+
+    <parent link="SEcylinder_joint"/>
+
+    <child link="elbow_link"/>
+
+    <origin xyz="0 0 0" rpy="0 1.57 0"/>
+
+  </joint>
+
+  
+
+  <!-- Elbow Link -->
+
+  <link name="elbow_link">
+
+    <visual>
+
+      <geometry>
+
+        <box size="0.07 0.07 0.4"/>
+
+      </geometry>
+
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+
+      <material name="green">
+
+        <color rgba="0.0 0.8 0.0 1.0"/>
+
+      </material>
+
+    </visual>
+
+    <collision>
+
+      <geometry>
+
+        <box size="0.08 0.08 0.4"/>
+
+      </geometry>
+
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+
+    </collision>
+
+  </link>
+
+
+
+<!-- magnet -->
+
+  <joint name="magnet_joint" type="continuous">
+
+    <parent link="elbow_link"/>
+
+    <child link="magnet_cylinder"/>
+
+    <origin xyz="0 0 0.39"/>
+
+    <axis xyz="0 0 1"/>
+
+  </joint>
+
+
+
+  <link name="magnet_cylinder">
+
+    <visual>
+
+      <origin xyz="0 0 0"/>
+
+      <geometry>
+
+        <cylinder length="0.04" radius="0.05"/>
+
+      </geometry>
+
+    </visual>
+
+    <color rgba="0.1 0.1 0.1 1.0"/>
+
+    <collision>
+
+      <origin xyz="0 0 0"/>
+
+      <geometry>
+
+        <cylinder length="0.02" radius="0.05"/>
+
+      </geometry>
+
+    </collision>
+
+  </link>
+
+
+
+  
+
+</robot>
