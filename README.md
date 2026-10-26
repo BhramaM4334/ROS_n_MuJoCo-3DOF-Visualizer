@@ -7,7 +7,8 @@
 
 # Some explanation for the code
 I'm using an entirely new arm file for this because the last one broke a bit. Also integrated ROS with MuJoCo
-
+<br>
+This is a project for ABINARA-1 Internship
 
 ## Simply, there are 2 nodes:
 ### 1. Publisher
@@ -23,6 +24,5 @@ Simply, because I want to loop it out, since I can just loop publisher so that s
 ## Preview video:
 https://github.com/user-attachments/assets/18d43223-06ec-49b7-8066-fb79448303ba
 
-
-
-
+## You can check the full breakdown of the code here: (Indonesian language)
+https://drive.google.com/drive/folders/1KyS9h6J-JM7bznFwlRTzyiERicTu7Ysp?usp=sharing
